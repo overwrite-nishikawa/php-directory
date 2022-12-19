@@ -1,4 +1,42 @@
 <?php
+
+// [1]
+$str = 'サーバーサイド技術';
+print(mb_substr($str,4,3));
+print '<br />';
+// [2]
+print(mb_convert_kana('ｻｰﾊﾞｰｻｲﾄﾞ技術','KV'));
+
+$str = "鈴木\t太郎\t男\t50歳\t広島県";
+print_r(explode('\t',$str));
+// ->
+$str = '鈴木¥t太郎¥t男¥t50歳¥t広島県';
+print_r(explode('¥t',$str));
+
+
+// 21/20 ここから
+
+// p.213
+// [1]
+// スタック:配列をに値を加えていき、最後に加えた値から取り出すこと.
+// pushとpop
+
+// キュー:配列を値を加えていき、最初に加えたものから取り出していくこと
+// pushとunshift
+
+// [2]
+$data1 = [10,15,30];
+$data2 = [60,90]; 
+$data1[] = 50;
+print_r($data); 
+// →array_shift($data);
+array_splice($data1,0,0,20); 
+// →　array_splice($data1,1,0,20);
+
+print_r(array_merge($data1,$data2));
+
+// 21/20ここまで
+
 $str = '住所は〒184-0000 鎌ヶ谷市梶野町0-0-0';
 // print preg_match($str,'/^[0-9]{3}-[0-9]{4}/');
 // →
@@ -92,3 +130,4 @@ print_r(array_slice($data,3,3));
 // ->print abs(-12);
 // (3)
 unset($x);
+
