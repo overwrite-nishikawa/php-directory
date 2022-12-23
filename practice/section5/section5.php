@@ -14,7 +14,7 @@ $str = '鈴木¥t太郎¥t男¥t50歳¥t広島県';
 print_r(explode('¥t',$str));
 
 
-// 21/20 ここから
+// 12/20 ここから
 
 // p.213
 // [1]
@@ -35,22 +35,19 @@ array_splice($data1,0,0,20);
 
 print_r(array_merge($data1,$data2));
 
-// 21/20ここまで
+// 12/20ここまで
 
-$str = '住所は〒184-0000 鎌ヶ谷市梶野町0-0-0';
-// print preg_match($str,'/^[0-9]{3}-[0-9]{4}/');
-// →
-if(preg_match('/[0-9]{3}-[0-9]{4}/',$str,$data)){
-    print $data[0];
-}
+// 12/23ここから
+// [1]
+$str = '住所は〒184-0000 鎌ヶ谷梶野町0-0-0です';
+preg_match('/([0-9]{3})-([0-9]{4})/',$str,$data);
 
-// $mail = 'お問い合わせはCQW15204@niffy.com';
-// // ptint preg_replace($mail,'/[a-z0-9\.\-]+@([a-z0-9\-]+\-)+[a-z0-9\-]+/i','<a href="meilto: ~">');
-// ->
-$str = 'お問い合わせはCQW15204@nifty.comまで';
-print preg_replace('/[a-z0-9\.\-]+@([a-z0-9\-]+\.)+[a-z0-9\-]+/i', '<a href="mailto:$0">$0</a>', $str);
+print $data[0];
 
-// 対象の文字列は、最後に書く！
+// [2]
+$str = 'お問い合わせはCQW15204@niffty.comまで';
+print preg_replace('/[a-z0-9\.\-]+@([a-z0-9\-]+\-)+[a-z-0-9\-]+/i','<a href="mailto: $0 ">$0</a>',$str);
+
 
 // 理解度チェック
 // [1]
@@ -130,4 +127,6 @@ print_r(array_slice($data,3,3));
 // ->print abs(-12);
 // (3)
 unset($x);
+
+
 
