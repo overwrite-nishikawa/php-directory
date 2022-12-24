@@ -38,6 +38,7 @@ print_r(array_merge($data1,$data2));
 // 12/20ここまで
 
 // 12/23ここから
+// p.237
 // [1]
 $str = '住所は〒184-0000 鎌ヶ谷梶野町0-0-0です';
 preg_match('/([0-9]{3})-([0-9]{4})/',$str,$data);
@@ -48,85 +49,87 @@ print $data[0];
 $str = 'お問い合わせはCQW15204@niffty.comまで';
 print preg_replace('/[a-z0-9\.\-]+@([a-z0-9\-]+\-)+[a-z-0-9\-]+/i','<a href="mailto: $0 ">$0</a>',$str);
 
+// 12/23ここまで
 
-// 理解度チェック
+// 12/24ここから
+// p.251
+$data[] = date('Y/m/d H:i:s');
+$data[] = $_SERVER['SCRIPT_NAME'];
+$data[] = $_SERVER['HTTP_USER_AGENT'];
+$file = fopen('access.csv','r') or die('ファイルを開けませんでした! '); 
+// ー>rではなくa
+flock($file,LOCK_EX);
+// fwrite($file,fgetcsv("w",$data) . );
+// ー>
+fwrite($file,implode(".",$data) . "\n" );
+flock($file,LOCK_UN);
+fclose($file);
+
+// 12/24ここまで
+
+// 12/24 理解度チェックここから(2回目)
 // [1]
-// (1)
-$str2 = 'PHPはPHP:Hypertext Preprocessorの略です';
+// (1)検索対象の文字列が先
+$str = 'PHPはphp:Hypertext Preprocessorの略です';
+// print mb_strrpos('PHP',$str);
+// →
+print mb_strrpos($str,'PHP') . '文字目';
 
-// print mb_strrpos('PHP',$str2);
-// ->
-print mb_strrpos($str2,'PHP').'文字目';
+// (2)小数点以下1桁までにするという問題文を読み飛ばしている。
+// printf('%sの気温は%s.3f℃です','弘前','15.156');
+// →
+printf('%sの気温は%s.1f℃です','弘前','15.156');
 
-// (2)
-// print mb_strlen("{$area}の気温は{$temp}℃です",'弘前',15.156,2);
-// ->
-// mb_strlen()は文字列の長さを取得する
-printf('%sの気温は%.1f℃です','弘前',15.156,2);
-
-// (3)小文字から大文字に変換
-// print mb_convert_case('wings kowledge','/K');
-// 別解
-print strtoupper('wings kowledge');
-print strtoupper('ｗｉｎｇｓ　ｋｎｏｗｌｅｄｇ');
-// 全角のアルファベットを半角に出来るのかを試す = 結果:出来ない。そのまま出力。
-// ->
-print mb_convert_case('wings kowledge','MB_CASE_TITLE');
-// MB_CASE_TITLEは、先頭文字を大文字に変換
+// (3)
+$str = 'wings knowledge';
+print mb_convert_case($str,MB_CASE_TITLE);
 
 // (4)
-$str3 = '僕の名前はリオです';
-// preg_replace($str3,'ボク','リオ','私','凛生');
-// ->
-print str_replace(['ボク','リオ'],['私','凛生'],$str3);
+// print str_replace('ボクの名前はリオです',['私','凛生'],['ボク','リオ']);
+// →
+$str = 'ボクの名前はリオです';
+print str_replace(['ボク','リオ'],['私','凛生'],$str);
 
 // (5)
-// preg_match('https://wings.msn.to/','http://');
-// ->
 $str = 'https://wings.msn.to/';
+// print str_starts_with('http://',$str);
+// →
 var_dump(str_starts_with($str,'http://'));
-// str_starts_withは特定の文字列が含まれるかを調べる
 
-// // [2]
-// $data = ['高江','青木','片渕'];
-// array_push($data,'山田','日尾');
-// array_shift($data,'掛谷','土井');ー>array_unshift($data,'掛谷','土井')
-// array_slice($data,2,3);
-// ー>
+// (6)
+$data = ['高江', '青木', '片渕'];
+array_push($data,'山田','日尾');
+array_unshift($data,'掛谷','土井');
 print_r(array_slice($data,3,3));
-// 　スライスされた結果は、戻り値として取得されるだけで出力されないからprint_rがいる
 
-// print $data;
-// // [3]
-// $file = fopen('sample.dat','a') or die('Cannot file open!');
-// flock($file,'f');
-// // if($line = array_search($file,1024)) {
-// //     if(preg_match('|http(s)?://([/w-]+\.)+[/[\w ./?%&=-]*)?|
-// //         x',$line,$data])
-// //         print $data[0]. '<br/>';
-// // }
-// flock($file,[]);
-// fclose($file);
-// ->
-// $file = fopen('sample.dat','r') or die('Cannot file open!');
-// flock($file,'LOCK_SH');
-// // while($line = fgets($file,1024)) {
-// //     if(preg_match('|http(s)?://([/w-]+\.)+[/[\w ./?%&=-]*)?|
-// //         i',,$data])
-// //         print $data[0]. '<br/>';
-// // }
-// flock($file,LOCK_UN);
-// fclose($file);
+// [3]
+$file = fopen('sample.dat','r') or die('Cannot open file');
+flock($file,LOCK_SH);
+// fwrite($line = explode($file,1024)) {
+    // →
+    while($line = fgets($file,1024)) {
+    // if(preg_match('|http(s)?://([\w-]+\.)+[\w-]+(/[\w ./?%&=-]*)?|/s',$file,$data)) {
+    // →
+        if(preg_match('|http(s)?://([\w-]+\.)+[\w-]+(/[\w ./?%&=-]*)?|/i',$line,$data)) {
+        print $data[0] . '<br/>';
+    }
+}
 
-// // [4]
-// // (1)
-// is_float(12.2)
-// ->print ceil(12.2);
+
+flock($file,LOCK_UN);
+fclose($file);
+
+// [3]数値を出力するだけなのでprintを使う
+// (1)
+var_dump(is_float(12.2));
+    // →
+print ceil(12.2);
 // (2)
-// is_string(-12);
-// ->print abs(-12);
+var_dump(abs(-12));
+    // →
+    print abs(-12);
 // (3)
+$x = 0;
 unset($x);
-
-
+print($x);
 
