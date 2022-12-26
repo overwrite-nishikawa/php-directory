@@ -1,6 +1,9 @@
 <?php 
 
 // p.273
+
+use Twig\Node\IncludeNode;
+
 function diamond($diamond1,$diamond2) {
     return $diamond1 * $diamond2 / 2;
 }
@@ -45,4 +48,17 @@ print_r($result);
 //  ー>
 $result = array_map(fn($v) => sqrt($v),$data);
 
+// p.305
+// [1]
+function square(float $base = 1,float $height = 1):float {
+    return $base * $height;
+}
+square();
+
+// [2]
+// include, ファイルを読み込んでエラーが出た場合にも処理は継続する。
+// include_once,  ファイルを読み込んでエラーが出た場合にも処理は継続する。一度だけファイルを読み込む
+// require, ファイルを読み込んでエラーが出た場合には処理を止める。
+// require_once　ファイルを読み込んでエラーが出た場合には処理を止める。一度だけファイルを読み込む
+// [3]
 ?>
