@@ -53,12 +53,31 @@ $result = array_map(fn($v) => sqrt($v),$data);
 function square(float $base = 1,float $height = 1):float {
     return $base * $height;
 }
-square();
+print square();
 
 // [2]
 // include, ファイルを読み込んでエラーが出た場合にも処理は継続する。
 // include_once,  ファイルを読み込んでエラーが出た場合にも処理は継続する。一度だけファイルを読み込む
 // require, ファイルを読み込んでエラーが出た場合には処理を止める。
 // require_once　ファイルを読み込んでエラーが出た場合には処理を止める。一度だけファイルを読み込む
+
 // [3]
+// function processNumber(callable $func,float ...$args) : array {
+//     foreach($args as $arg) {
+//         $result[] =  $arg;
+// ->$result[] = $func($arg);
+//     }
+//     return $result;
+// }
+
+// global $x,$y = processNumber(
+    // -> [$x,$y] = processNumber(
+//     ->fn($sum) =>$num ** 2
+//     5,15);
+// )
+
+// [4]
+// (1)1
+// (2)NULL
+// (3)1-> 2
 ?>
