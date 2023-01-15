@@ -1,5 +1,4 @@
 <?php
-// 自分で書いたコード
 require_once '../DbManager.php';
 require_once '../Encode.php';
 ?>
@@ -15,7 +14,7 @@ require_once '../Encode.php';
   <table class="table">
     <thead>
       <tr>
-        <th>ISBNコード</th><th>署名</th><th>価格</th><th>出版社</th><th>刊行日</th>
+        <th>ISBNコード</th><th>書名</th><th>価格</th><th>出版社</th><th>刊行日</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +23,9 @@ require_once '../Encode.php';
         $db = getDb();
         $stt = $db->prepare('SELECT * FROM book2 ORDER BY published DESC');
         $stt->execute();
-        while($row = $stt->fetch(PDO::FETCH_ASSOC)) {
+        // while($row = $stt->fetch(PDO::FETCH_ASSOC)) {
+        $stt->setFetchMode(PDO::FETCH_ASSOC);
+        foreach($stt as $row) {
           ?>
           <tr>
             <td><?=e($row['isbn']) ?></td>
@@ -42,5 +43,5 @@ require_once '../Encode.php';
        ?>     
        </tbody>
   <utabli>
-</b ody>
+</body>
 </html>
