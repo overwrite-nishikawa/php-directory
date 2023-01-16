@@ -1,5 +1,4 @@
-<?php
-// 自分で書いたコード
+<?=// 自分で書いたコード
 require_once "../DbManager.php";
 
 session_start();
@@ -10,7 +9,7 @@ if(!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
 try {
   $db = getDb();
   // $stt = $db->prepare('INSERT INTO book2(isbn,title,price,publish,published) VALUES(:isbn,:titile,:price,:publish,:published)');
-  $stt = $db->prepare('INSERT INTO book2(isbn,title,price,publish,published) VALUES(?, ?, ?, ?, ?)');
+  $stt = $db->prepare('INSERT INTO book2 (isbn,title,price,publish,published) VALUES(?, ?, ?, ?, ?)');
   // $stt->bindValue(':isbn',$_POST['isbn']);
 $stt->bindValue(1,$_POST['isbn']);
 // $stt->bindValue(':title',$_POST['title']);

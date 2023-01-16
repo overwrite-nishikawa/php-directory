@@ -10,7 +10,6 @@
 //   print "エラーコード（ドライバー）：{$info[1]} <br />";
 //   print "エラーメッセージ：{$info[2]}";
 // }
-// 自分で書いたコード
 require_once '../DbManager.php';
 
 $db = getDb();

@@ -5,7 +5,6 @@
 <title>データの登録</title>
 </head>
 <body>
-<!-- // 自分で書いたコード -->
   <form method="POST" action="insert_process.php">
 <div>
   <label for="isbn">ISBNコード</label>

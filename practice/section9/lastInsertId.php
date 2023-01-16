@@ -9,7 +9,6 @@
 //   die("エラーメッセージ：{$e->getMessage()}");
 // }
 
-// 自分で書いたコード
 require_once '../DbManager.php';
 
 try {
