@@ -4,7 +4,7 @@ require_once "../DbManager.php";
 
 try {
   $db =getDb();
-  $fp = fopen("../csv/questions_import.csv",'r');
+  $fp = fopen("../csv/sample4.csv",'r');
   while($line = fgetcsv($fp)) {
     var_dump($line[2]);
     $line[2] = intval($line[2]); 

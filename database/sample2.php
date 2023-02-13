@@ -3,7 +3,7 @@ require_once "../DbManager.php";
 
 try {
   $db = getDb();
-  $fp = fopen("../csv/question_choices_import.csv",'r');
+  $fp = fopen("../csv/sample2.csv",'r');
   while($line = fgetcsv($fp)) {
     $stt = $db->prepare("INSERT INTO sample3(
       charcter,
