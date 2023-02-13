@@ -1,0 +1,39 @@
+ul {
+    list-style:none;
+}
+
+li {
+    border-bottom: solid 1px gray;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+}
+
+span {
+    display: inline-block;
+}
+
+.name {
+    width: 200px;
+}
+
+.email {
+    width : 350px;
+}
+
+.buttons a {
+    background-color: cornflowerblue;
+    padding: 5px 15px;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px lightgray;
+    border: none;
+    margin-right: 5px;
+}
+.buttons .edit {
+    background-color: lightcoral;
+}
+
+.buttons .delete {
+    background-color: rgb(0.0.255);
+}

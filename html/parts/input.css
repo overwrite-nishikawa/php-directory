@@ -1,0 +1,15 @@
+input {
+    width: 300px;
+    border: none;
+    border-bottom: solid 1px lightgray;
+    padding: 10px;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: solid 1px aqua;
+}
+
+a:hover {
+    background-color: lightpink;
+}

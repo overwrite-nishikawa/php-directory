@@ -1,0 +1,19 @@
+a {
+    background-color: pink;
+    padding: 15px;
+    text-decoration: none;
+    color:white;
+    border-radius: 18px;
+    box-shadow: 2px 2px lightgray;
+}
+
+button {
+    background-color: pink;
+    padding: 15px;
+    text-decoration: none;
+    color:white;
+    border-radius: 18px;
+    box-shadow: 2px 2px lightgray;
+    border: none;
+
+}
